@@ -1,0 +1,125 @@
+# voice-app
+google admobのバナー広告を表示するとともに、ボタンを押すと音声データを出力する内容のコード
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AViewController.swift</title>
+</head>
+<body>
+    <pre>
+//  AViewController.swift
+//  app
+//
+//  Created by 境野大 on 2024/03/27.
+//
+
+import UIKit
+import AVFoundation
+import GoogleMobileAds
+
+class K2ViewController: UIViewController {
+    var player: AVAudioPlayer?
+    
+    var bannerView: GADBannerView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        bannerView = GADBannerView(adSize: GADAdSizeBanner)
+        addBannerViewToView(bannerView)
+        bannerView.adUnitID = "あなたのAd Unit IDに置き換えてください。" 
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+    }
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: view.safeAreaLayoutGuide,
+                                attribute: .bottom,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
+    }
+    
+    @IBAction func buttonC1Pressed(_ sender: UIButton) {
+        playSound(soundName: "ここに音声ファイル名を入力以下同様")
+    }
+    
+    @IBAction func buttonC2Pressed(_ sender: UIButton) {
+        playSound(soundName: "")
+    }
+    
+    @IBAction func buttonC3Pressed(_ sender: UIButton) {
+        playSound(soundName: "")
+    }
+    
+    @IBAction func buttonC4Pressed(_ sender: UIButton) {
+        playSound(soundName: "")
+    }
+    @IBAction func buttonC5Pressed(_ sender: UIButton) {
+        playSound(soundName: "")
+    }
+    @IBAction func buttonC6Pressed(_ sender: UIButton) {
+        playSound(soundName: "")
+    }
+    @IBAction func buttonC7Pressed(_ sender: UIButton) {
+        playSound(soundName: "")
+    }
+    @IBAction func buttonC8Pressed(_ sender: UIButton) {
+        playSound(soundName: "")
+    }
+    @IBAction func buttoC9Pressed(_ sender: UIButton) {
+        playSound(soundName: "")
+    }
+    
+    @IBAction func buttonC10Pressed(_ sender: UIButton) {
+        playSound(soundName: "")
+    }
+    
+    @IBAction func buttonC11Pressed(_ sender: UIButton) {
+        playSound(soundName: "")
+    }
+    @IBAction func buttonC12Pressed(_ sender: UIButton) {
+        playSound(soundName: "")
+    }
+    
+    @IBAction func buttonC13Pressed(_ sender: UIButton) {
+        playSound(soundName: "")
+    }
+    @IBAction func buttonC14Pressed(_ sender: UIButton) {
+        playSound(soundName: "")
+    }
+    @IBAction func buttonC15Pressed(_ sender: UIButton) {
+        playSound(soundName: "")
+    }
+    func playSound(soundName: String) {
+        guard let url = Bundle.main.url(forResource: soundName, withExtension: "m4a") else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            
+            guard let player = player else { return }
+            
+            player.play()
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+}
+    </pre>
+</body>
+</html>
